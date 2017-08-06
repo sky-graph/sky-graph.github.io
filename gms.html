@@ -1,0 +1,37 @@
+CTYPE html>
+<html>
+<head>
+	<title>気象衛星画像</title>
+	<script language="javascript">
+		var time	=new Date();
+		var cnt_gms	=-1;
+		var time_gms=time;
+		time_gms.setDate(time_gms.getDate() -20/(24*60));
+		
+		
+		function mkUrlGms(){
+			var kind	="infrared";
+			var mytime	=time_gms;
+			
+			cnt_gms		=cnt_gms+1;
+			var mod		=cnt_gms % 3;
+			
+			if( mod==0 ){
+				kind	="infrared";
+			}else if( mod==1 ){
+				kind	="visible";
+			}else{
+				kind	="watervapor";
+			}
+			document.getElementById("gms_name").innerHTML = kind;
+			
+			document.gms.src="http://www.jma.go.jp/jp/gms/imgs_c/0/" +kind +"/1/" +(mytime.getFullYear()) +("0" + (mytime.getMonth()+1)).slice(-2) +("0" + mytime.getDate()).slice(-2) +("0" + mytime.getHours()).slice(-2) +("0" + mytime.getMinutes()).slice(-2).substr(0,1) +"0-00.png";
+		}
+	</script>
+</head>
+<body onLoad="mkUrlGms()">
+	<h1>気象衛星画像：<span id="gms_name">種類</span></h1>
+	<img class="Tileimg" name="gms" src="" onclick="mkUrlGms()">
+</body>
+
+
