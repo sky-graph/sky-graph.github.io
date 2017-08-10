@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xml:lang="ja" lang="ja">
+<head>
+	<!-- 参考：http://black-flag.net/jquery/20140527-5155.html  -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="user-scalable=0">
+	<title>気象情報ページ for mobile</title>
+	<link rel="stylesheet" href="css/tenki_m_reset.css">
+	<link rel="stylesheet" href="css/tenki_m_common.css">
+	<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="js/tenki_m_style.js"  type="text/javascript" charset="Shift_JIS" ></script>
+	<script src="js/tenki_m_mkurl.js"  type="text/javascript" charset="UTF-8" ></script>
+</head>
+
+<body onload="tenki_m_mkurl_init()">
+
+
+<div id="container">
+
+
+<section id="stage1" class="stageBase">
+<div class="stageSlide">
+	<div class="slidePanel">
+	<div class="fieldWrap">
+		<div class="fieldLow"><a href="">防災情報リンク</a></div>
+		<p>
+			<div class="link_info_h">予測資料</div>
+			<div class="link_info_1_1"><a href="">高層図</a></div>
+			<div class="link_info_1_2"><a href="http://weather-gpv.info">GPV</a></div>
+			<div class="link_info_1_3"><a href="https://n-kishou.com/ee/exp/exp.html">解説資料</a></div>
+		</p>
+		<p>
+			<div class="link_info_h">気象庁1</div>
+			<div class="link_info_2_1"><a href="http://www.jma.go.jp/jp/kishojoho/">気象情報</a></div>
+			<div class="link_info_2_2"><a href="http://www.jma.go.jp/jp/typh/">台風</a></div>
+			<div class="link_info_2_3"><a href="http://www.jma.go.jp/jp/tatsumaki/">竜巻</a></div>
+		</p>
+		<p>
+			<div class="link_info_h">気象庁2</div>
+			<div class="link_info_1_1"><a href="http://www.jma.go.jp/jp/dosha/">土砂災害</a></div>
+			<div class="link_info_1_2"><a href="http://www.jma.go.jp/jp/flood/">指定河川</a></div>
+			<div class="link_info_1_3"><a href="http://www.data.jma.go.jp/fcd/yoho/data/kouon/">高温</a></div>
+		</p>
+		<p>
+			<div class="link_info_h">交通</div>
+			<div class="link_info_2_1"><a href="http://www.jartic.or.jp">高速</a></div>
+			<div class="link_info_2_2"><a href="http://info-road.hdb.hkd.mlit.go.jp/RoadInfo/index.htm">国道等</a></div>
+			<div class="link_info_2_3"><a href="http://northern-road.jp/navi/touge/fubuki.htm">視界情報</a></div>
+		</p>
+	</div><!--/.fieldWrap -->
+	</div><!--/.slidePanel -->
+
+	<div class="slidePanel slideInitial">
+	<div class="fieldWrap">
+		<h1>気象情報ページ for mobile</h1>
+		<div class="fieldLow"><a href="" id="link_map"><span id="linkfont_map">リンク</span></a></div>
+		<p><img src="" name="img_map" onclick="select_map()" width="70%" ></p>
+	</div><!--/.fieldWrap -->
+	</div><!--/.slidePanel -->
+
+	<div class="slidePanel">
+	<div class="fieldWrap">
+		<div class="fieldLow"><a href="" id="link_gms"><span id="linkfont_gms">衛星画像</span></a></div>
+		<p><img src="" name="img_gms" onclick="select_gms()" width="90%"></p>
+	</div><!--/.fieldWrap -->
+	</div><!--/.slidePanel -->
+
+</div><!--/.stageSlide -->
+</section>
+
+
+
+<section id="stage2" class="stageBase">
+<div class="fieldWrap">
+<p>ここは2ページ目</p>
+</div><!--/.fieldWrap -->
+</section>
+
+<section id="stage3" class="stageBase">
+<div class="stageSlide">
+	<div class="slidePanel">
+	<div class="fieldWrap">
+	<p>ここは3ページ目<br>
+	スライドエリア【1】</p>
+	</div><!--/.fieldWrap -->
+	</div><!--/.slidePanel -->
+
+	<div class="slidePanel">
+	<div class="fieldWrap">
+	<p>スライドエリア【2】</p>
+	</div><!--/.fieldWrap -->
+	</div><!--/.slidePanel -->
+
+	<div class="slidePanel">
+	<div class="fieldWrap">
+	<p>スライドエリア【3】</p>
+	</div><!--/.fieldWrap -->
+	</div><!--/.slidePanel -->
+</div><!--/.stageSlide -->
+</section>
+
+<section id="stage4" class="stageBase">
+<div class="stageSlide">
+	<div class="slidePanel">
+	<div class="fieldWrap">
+	<p>スライドエリア【1】</p>
+	</div><!--/.fieldWrap -->
+	</div><!--/.slidePanel -->
+
+	<div class="slidePanel slideInitial">
+	<div class="fieldWrap">
+	<p>ここは4ページ目<br>
+	スライドエリア【2】</p>
+	</div><!--/.fieldWrap -->
+	</div><!--/.slidePanel -->
+
+	<div class="slidePanel">
+	<div class="fieldWrap">
+	<p>スライドエリア【3】</p>
+	</div><!--/.fieldWrap -->
+	</div><!--/.slidePanel -->
+
+</div><!--/.stageSlide -->
+</section>
+
+<section id="stage5" class="stageBase">
+<div class="stageSlide">
+	<div class="slidePanel">
+	<div class="fieldWrap">
+	<p>スライドエリア【1】</p>
+	</div><!--/.fieldWrap -->
+	</div><!--/.slidePanel -->
+
+	<div class="slidePanel">
+	<div class="fieldWrap">
+	<p>スライドエリア【2】</p>
+	</div><!--/.fieldWrap -->
+	</div><!--/.slidePanel -->
+
+	<div class="slidePanel">
+	<div class="fieldWrap">
+	<p>スライドエリア【3】</p>
+	</div><!--/.fieldWrap -->
+	</div><!--/.slidePanel -->
+
+	<div class="slidePanel slideInitial">
+	<div class="fieldWrap">
+	<p>ここは5ページ目<br>
+	スライドエリア【4】</p>
+	</div><!--/.fieldWrap -->
+	</div><!--/.slidePanel -->
+
+	<h2>COPYRIGHT &copy; <a href="http://black-flag.net/">BLACKFLAG.NET</a> ALL RIGHTS RESERVED.</h2>
+</div><!--/.stageSlide -->
+</section>
+
+</div><!--/#container-->
+
+</body>
+</html>
