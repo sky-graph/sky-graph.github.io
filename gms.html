@@ -5,8 +5,9 @@
 	<script language="javascript">
 		var time	=new Date();
 		var cnt_gms	=-1;
-		var time_gms=time;
-		time_gms.setDate(time_gms.getDate() -20/(24*60));
+		var time_gms	=time;
+		//time_gms.setDate(time_gms.getDate() -20/(24*60));
+		time_gms.setMinutes(time_gms.getMinutes() - 20);
 		
 		
 		function mkUrlGms(){
