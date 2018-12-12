@@ -12,6 +12,8 @@
 			mkMAP();
 			mkNOWCAST();
 			mkSITEI();
+			mkFORCAST();
+			//var mySwiper = new Swiper('.swiper-container', { keyboard: { enabled: true, }, });
 			//document.getElementById("print_msg").innerHTML =
 		}
 		
@@ -55,7 +57,6 @@
 			document.nowcast60.src ="https://www.jma.go.jp/jp/radnowc/imgs/nowcast/201/"+$time.getFullYear()+("0"+($time.getMonth()+1)).slice(-2)+("0"+$time.getDate()).slice(-2)+("0"+$time.getHours()).slice(-2)+$mm+"-12.png";
 		}
 		
-		
 		function mkSITEI(){
 			if (window.innerWidth < 900) {
 				document.getElementById('sitei').href="http://northern-road.jp/navi/touge/sp/fubuki.htm";
@@ -63,6 +64,9 @@
 				document.getElementById('sitei').href="http://northern-road.jp/navi/touge/fubuki.htm";
 			}
 		}
+		
+		
+		
 		
 	</script>
 	
@@ -77,8 +81,9 @@
 	.tile{				background-color: #336699; color: #fff; width: 29%; height: 20%; margin: 1%; border: 0; padding: 1%; float:left; display: block; display: table-cell; vertical-align: middle; }
 	.tile:hover {		background-color: #113366; }
 	
-	img.in_tile{			object-fit: scale-down; height: 80%; }
+	img.in_tile{		object-fit: scale-down; height: 80%; }
 	img.h{				width:100%; }
+	img.v{				height:98%; }
 	
 	
 	/* PC用設定 */
@@ -108,7 +113,11 @@
 			<div class="swiper-slide">
 				<div class="swiper-container swiper-container-h">
 					<div class="swiper-wrapper">
-						<div class="swiper-slide"><span id="print_msg"></span><br><h2>衛星画像：<span id="gms_name"></span></h2><br><img name="gms" src="" onclick="mkGMS()" class="h"></div>
+						<div class="swiper-slide">
+							<span id="print_msg"></span><br><h2>衛星画像：<span id="gms_name"></span></h2><br><img name="gms" src="" onclick="mkGMS()" class="h"><br>
+							各種気象情報を見やすいようページを作成しました。気象庁サイトの画像を表示しています。
+							スワイプ、またはカーソルキーで遷移します。
+						</div>
 						<div class="swiper-slide">
 							<h2>リンク</h2>
 							<a href="https://www.jma.go.jp/jp/warn/000.html">					<div class="tile" >注警報<br><img src="https://www.jma.go.jp/jp/warn/imgs/000/99.png" class="in_tile"></div></a>
@@ -117,7 +126,7 @@
 							<a href="http://info-road.hdb.hkd.mlit.go.jp/RoadInfo/index.htm">	<div class="tile" >通行止め<br>（国道）</div></a>
 							<a href="http://www.jartic.or.jp/link.html?code=1001&type=0">		<div class="tile" >通行止め<br>（高速）</div></a>
 							<a href="https://transit.yahoo.co.jp/traininfo/area/2/">			<div class="tile" >運航情報<br>（JR）</div></a>
-							<a href="" id="sitei">												<div class="tile" >吹雪の視界情報<br><img src="http://www.northern-road.jp/navi/touge/weather_pdf/kmap_large00.png" class="in_tile"></div></a>
+							<a href="" id="sitei">												<div class="tile" >吹雪の視界情報</div></a>
 						</div>
 					</div>
 					<!-- Add Pagination -->
@@ -138,30 +147,18 @@
 			</div>
 			
 			<div class="swiper-slide">
-				
-				
-				
 				<div class="swiper-container swiper-container-h">
 					<div class="swiper-wrapper">
 						<div class="swiper-slide"><h2>ナウキャスト（現況）</h2><br>		<a href="https://www.jma.go.jp/jp/highresorad/"><img name="nowcast" src="" class="h"></a></div>
-						<div class="swiper-slide"><h2>ナウキャスト（30分後）</h2><br>	<a href="https://www.jma.go.jp/jp/highresorad/"><img name="nowcast30" src="" class="h"></a></div>
-						<div class="swiper-slide"><h2>ナウキャスト（1時間後）</h2><br>	<a href="https://www.jma.go.jp/jp/highresorad/"><img name="nowcast60" src="" class="h"></a></div>
-						<div class="swiper-slide"><h2>リンク</h2><br>					<a href="https://www.jma.go.jp/jp/kaikotan/"><div class="tile" >今後の雨</div></a></div>
+						<div class="swiper-slide"><h2>ナウキャスト（約30分後）</h2><br>	<a href="https://www.jma.go.jp/jp/highresorad/"><img name="nowcast30" src="" class="h"></a></div>
+						<div class="swiper-slide"><h2>ナウキャスト（約1時間後）</h2><br>	<a href="https://www.jma.go.jp/jp/kaikotan/">   <img name="nowcast60" src="" class="h"></a><br>※リンクは今後の雨</div>
 					</div>
 					<!-- Add Pagination -->
 					<div class="swiper-pagination swiper-pagination-h"></div>
 				</div>
 			</div>
 			
-			<div class="swiper-slide">
-				<h2>850hPa等相当温位<h2><br>
-			</div>
 			
-			<div class="swiper-slide">高層1
-			</div>
-			
-			<div class="swiper-slide">高層2
-			</div>
 		</div>
 		
 		<!-- Add Pagination -->
@@ -173,21 +170,19 @@
 
 	<!-- Initialize Swiper -->
 	<script>
+		
 		var swiperH = new Swiper('.swiper-container-h', {
-		spaceBetween: 50,
-		pagination: {
-		el: '.swiper-pagination-h',
-		clickable: true,
-		},
+			spaceBetween: 50,
+			pagination: { el: '.swiper-pagination-h', clickable: true, },
+			keyboard: true
 		});
 		var swiperV = new Swiper('.swiper-container-v', {
-		direction: 'vertical',
-		spaceBetween: 50,
-		pagination: {
-		el: '.swiper-pagination-v',
-		clickable: true,
-		},
+			direction: 'vertical',
+			spaceBetween: 50,
+			pagination: { el: '.swiper-pagination-v', clickable: true, },
+			keyboard: true
 		});
+
   </script>
 
 
