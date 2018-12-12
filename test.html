@@ -26,19 +26,19 @@
 			var $now    =new Date();
 			
 			//実況
-			var $time=$now; $time.setMinutes( $time.getMinutes()-130 );
+			var $time=new Date(); $time.setMinutes( $time.getMinutes()-130 );
 			var $hour=$time.getHours()
 			var $hh; if( $hour>=21 || $hour<3 ){ $hh="21"; }else if( $hour>=18 ){ $hh="18"; }else if( $hour>=15 ){ $hh="15"; }else if( $hour>=12 ){ $hh="12"; }else if( $hour>=9 ){ $hh="09"; }else{ $hh="06"; }
 			document.map00.src="https://www.jma.go.jp/jp/g3/images/jp_c/" +$time.getFullYear().toString().slice(-2) +("0"+($time.getMonth()+1)).slice(-2) +("0"+$time.getDate()).slice(-2) +$hh +".png";
 			
 			//24H予想（4時頃更新：前日21時初期値、15時頃更新：9時初期値）
-			$hour=$now.getHours();
+			$now =new Date(); $hour=$now.getHours();
 			$hh  ="09"; if( $hour>=4 && $hour<15 ){ $hh="21"; }
 			$time=$now; if( $hour>=15 ){ $time.setDate($time.getDate()+1); }
 			document.map24.src="https://www.jma.go.jp/jp/g3/images/jp_c/24h/" +$time.getFullYear().toString().slice(-2) +("0"+($time.getMonth()+1)).slice(-2) +("0"+$time.getDate()).slice(-2) +$hh +".png";
 			
 			//48H予想（6時頃更新：前日21時初期値、17時頃更新：9時初期値）
-			$hour=$now.getHours();
+			$now =new Date(); $hour=$now.getHours();
 			$hh  ="09"; if( 6<=$hour && $hour<17 ){ $hh="21"; }
 			$time=$now; $time.setDate($time.getDate()+1); if( $hour>=17 ){ $time.setDate($time.getDate()+1); }
 			document.map48.src="https://www.jma.go.jp/jp/g3/images/jp_c/48h/" +$time.getFullYear().toString().slice(-2) +("0"+($time.getMonth()+1)).slice(-2) +("0"+$time.getDate()).slice(-2) +$hh +".png";
@@ -53,30 +53,33 @@
 		
 	</script>
 	
+	
 	<style>
-	html, body {
-		position: relative;
-		height: 100%;
+	
+	html, body {		position: relative; height: 100%; }
+	body {				background: #eee; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-size: calc(80% + 0.15vw); color:#000; margin: 0; padding: 0; }
+	
+	.swiper-slide {		text-align: center; background: #fff; }
+	.block_gray:hover {	background-color: #113366; }
+	
+	@media only screen and (min-width:600px){
+		/* h2 {				font-size: calc(112.5% + 0.1vw); } */
+		.block_gray{		background-color: #336699; color: #fff; width: 20%; height: 15%; margin: 2%; border: 0; padding: 2%; float:left; display: block; display: table-cell; vertical-align: middle; }
 	}
-	body {
-		background: #eee;
-		font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-		font-size: 14px;
-		color:#000;
-		margin: 0;
-		padding: 0;
+	
+	@media only screen and (max-width:600px){
+		h2 {				font-size: 18px; }
+		.block_gray{		background-color: #336699; color: #fff; width: 20%; height: 15%; margin: 2%; border: 0; padding: 2%; float:left; display: block; display: table-cell; vertical-align: middle; }
+		img.h{				width:100%; }
 	}
-	h2 {
-		font-size: 18px;
-	}
-	.swiper-slide {
-		text-align: center;
-		background: #fff;
-	}
+	
 	</style>
+	
 	
 	<!-- LINK -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.2/css/swiper.min.css">
+	
+
 </head>
 
 
@@ -88,17 +91,31 @@
 	<!-- Swiper -->
 	<div class="swiper-container swiper-container-v">
 		<div class="swiper-wrapper">
+			
 			<div class="swiper-slide">
-				<span id="print_msg"></span><br>
-				<h2>衛星画像：<span id="gms_name"></span></h2><br><img name="gms" src="" onclick="mkGMS()" width="100%">
+				<div class="swiper-container swiper-container-h">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide"><span id="print_msg"></span><br><h2>衛星画像：<span id="gms_name"></span></h2><br><img name="gms" src="" onclick="mkGMS()" class="h"></div>
+						<div class="swiper-slide"><h2>注警報</h2><br><a href="https://www.jma.go.jp/jp/warn/000.html"><img src="https://www.jma.go.jp/jp/warn/imgs/000/99.png" class="h"></a></div>
+						<!-- div class="swiper-slide"><h2>吹雪の視界情報</h2><br><a href="http://northern-road.jp/navi/touge/fubuki.htm"><img src="http://www.northern-road.jp/navi/touge/weather_pdf/kmap_large00.png" class="h"></a></div -->
+						<div class="swiper-slide">
+							<a href="https://www.jma.go.jp/jp/kishojoho/101_index.html"><div class="block_gray" >気象情報（北海道）</div></a>
+							<a href="https://www.jma.go.jp/jp/kishojoho/306_index.html"><div class="block_gray" >気象情報（石狩）</div></a>
+							<a href="http://info-road.hdb.hkd.mlit.go.jp/RoadInfo/index.htm"><div class="block_gray" >通行止め（国道）</div></a>
+							<a href="http://www.jartic.or.jp/link.html?code=1001&type=0"><div class="block_gray" >通行止め（高速）</div></a>
+						</div>
+					</div>
+					<!-- Add Pagination -->
+					<div class="swiper-pagination swiper-pagination-h"></div>
+				</div>
 			</div>
 			
 			<div class="swiper-slide">
 				<div class="swiper-container swiper-container-h">
 					<div class="swiper-wrapper">
-						<div class="swiper-slide"><h2>実況天気図</h2><br><img name="map00" src="" width="100%"></div>
-						<div class="swiper-slide"><h2>予想天気図（24時間後）</h2><br><img name="map24" src="" width="100%"></div>
-						<div class="swiper-slide"><h2>予想天気図（48時間後）</h2><br><img name="map48" src="" width="100%"></div>
+						<div class="swiper-slide"><h2>実況天気図</h2><br><img name="map00" src="" class="h"></div>
+						<div class="swiper-slide"><h2>予想天気図（24時間後）</h2><br><img name="map24" src="" class="h"></div>
+						<div class="swiper-slide"><h2>予想天気図（48時間後）</h2><br><img name="map48" src="" class="h"></div>
 					</div>
 					<!-- Add Pagination -->
 					<div class="swiper-pagination swiper-pagination-h"></div>
@@ -107,10 +124,11 @@
 			
 			<div class="swiper-slide">
 				<h2>ナウキャスト</h2><br>
-				<a href="https://www.jma.go.jp/jp/highresorad/"><img name="nowcast" src="" width="100%"></a>
+				<a href="https://www.jma.go.jp/jp/highresorad/"><img name="nowcast" src="" class="h"></a>
 			</div>
 			
-			<div class="swiper-slide">850温位
+			<div class="swiper-slide">
+				<h2>850hPa等相当温位<h2><br>
 			</div>
 			
 			<div class="swiper-slide">高層1
